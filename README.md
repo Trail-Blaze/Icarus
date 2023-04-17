@@ -1,4 +1,7 @@
 # Icarus
+> ## TLDR - I haven't had much time to work on this but it's coming along rather well
+
+
 The Blaze backend — An entire rewrite equipped with account management, 2FA authentication and more!
 
 > _"Icarus laughed as he fell. Threw his head back and yelled into the winds, arms spread wide, teeth bared to the world."_
