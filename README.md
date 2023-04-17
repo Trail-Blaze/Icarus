@@ -29,7 +29,7 @@ This backend is written in Typescript. We use MongoDB for the database handlnig 
 #### Backend API
 Allows account creation, deletion, modication, authentication with 2 layers (password and 2FA (optional)) and connection with parties and the chat through 2 ways (Fortnite_Client (XMPP) and client (XMPP/SJM)).
 
-#### Fortnite API/SDK (Don't know what to call it, but let's just call it @trail-blaze/XField)
+#### Fortnite API/SDK (@trail-blaze/XField)
 
 ```js
 import { FWorld } from "@trail-blaze/XField";
