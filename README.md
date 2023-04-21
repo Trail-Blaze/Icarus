@@ -53,7 +53,7 @@ World.getPawnList().forEach((pawn)=>{
 const myPawn = World.getPawnByUsername("Array0x");
 
 myPawn.move(600, 600, 600); // x, y, z
-myPawn.costume("CID_016_Athena_Commando_F"); // Set the skin (changes the value in the profile's directory as well.
+myPawn.costume("CID_016_Athena_Commando_F"); // Set the skin (changes the value in the profile's directory as well)
 myPawn.kill(); // Kick the pawn from the world
 
 ```
