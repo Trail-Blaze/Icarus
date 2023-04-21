@@ -6,7 +6,7 @@ The Blaze backend — An entire rewrite equipped with account management, 2FA au
 
 > _"Icarus laughed as he fell. Threw his head back and yelled into the winds, arms spread wide, teeth bared to the world."_
 
-This backend is written in Typescript. We use MongoDB for the database handlnig since it's simple to use.
+This backend is written in Typescript and C++. We use MongoDB for the database handlnig since it's simple to use.
 
 ### Features
 - Robust account handling
