@@ -32,9 +32,9 @@ Allows account creation, deletion, modication, authentication with 2 layers (pas
 #### Fortnite API/SDK (@trail-blaze/XField)
 
 ```js
-import { FWorld } from "@trail-blaze/XField";
+import { FWorld } from "@alexdev404/XField";
 
-// Get world properties (state, game_mode, playlist, damage) 
+// Get world properties (state, game_mode, playlist, damage)
 // state could have the following values: "disengaged", "engaged", "inProgress"
 // disengaged -> Inactive, engaged -> On spawn island, inProgress -> The game is in progress
 
@@ -44,16 +44,16 @@ FWorld.getProperty(); // No argument means get all properties. Providing a strin
 FWorld.setProperty("damage", "false");
 
 // Move all pawns to (x, y)
-World.getPawnList().forEach((pawn)=>{
+FWorld.getPawnList().forEach((pawn) => {
    pawn.move(70, 70, 70); // x, y. z
 });
 
-
-// Move one pawn 
-const myPawn = World.getPawnByUsername("Array0x");
+// Move one pawn
+const myPawn = FWorld.getPawnByUsername("Array0x");
 
 myPawn.move(600, 600, 600); // x, y, z
 myPawn.costume("CID_016_Athena_Commando_F"); // Set the skin (changes the value in the profile's directory as well)
 myPawn.kill(); // Kick the pawn from the world
+
 
 ```
