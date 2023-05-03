@@ -104,7 +104,7 @@ And this is an example of a Flare (Work-In-Progress)
 
 ```json
 {
-   "spark_id": "IANCBAA4xnQDOyUEUIQA7gAUiCASny5R+AJ4D2AI0L4", // Error stored in the database
+   "spark_id": "IANCBAA4xnQDOyUEUIQA7gAUiCASny5R+AJ4D2AI0L4", // Error ID stored in the database
    "severity": "HIGH",
    "attention": {
       "trace": [
