@@ -125,13 +125,13 @@ import { FWorld } from "@trail-blaze/retroflex";
 import { Flare } from "@trail-blaze/flare";
 
 ThreadStart = (arguments: Array) => {
-// Disable fall damage
-FWorld.setProperty("damage", "false");
+   // Disable fall damage
+   FWorld.setProperty("damage", "false");
 
-// Move all pawns to (x, y, z)
-FWorld.getPawnList().forEach((pawn) => {
-   pawn.move(700, 700, 700); // x, y. z
-});
+   // Move all pawns to (x, y, z)
+   FWorld.getPawnList().forEach((pawn) => {
+      pawn.move(700, 700, 700); // x, y. z
+   });
    return 0;
 };
 
@@ -157,6 +157,7 @@ ErrorHandler = (error: Flare) => {
    }
    return 1;
 };
+
 
 ```
 
