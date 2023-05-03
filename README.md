@@ -43,7 +43,7 @@ FWorld.getProperty(); // No argument means get all properties. Providing a strin
 // Disable fall damage
 FWorld.setProperty("damage", "false");
 
-// Move all pawns to (x, y)
+// Move all pawns to (x, y, z)
 FWorld.getPawnList().forEach((pawn) => {
    pawn.move(70, 70, 70); // x, y. z
 });
@@ -64,13 +64,15 @@ Modules are small function-driven scripts. Modules are the means of how you'll b
 Modules can either be stored on your computer to use on a hosted backend or hosted on the server itself to provide default access to the module to all clients that connect.
 They are written in TypeScript (or JavaScript if stored on the client computer) and are anonymous functions that are executed when the server is run.
 
+> FYI **ABSOLUTELY NOTHING** runs out of these functions unless **explicitly** told to do so.
+
 There are three main anonymous functions that are to be called in order for a module to be considered "valid" by the server. 
 - `ErrorHandler(error: Flare)`: Is what's executed when an error is encountered in the module. The server will pass in a formatted list of the trace called a `Flare`.
 - `ThreadStart(arguments: Array)`: Is what is executed when the module is invoked after startup. It takes in an array of arguments.
 - `ThreadExit(arguments: Array)`: Is what is executed when the module decides to exit. It takes in an array of arguments.
 
 
-### Below is an example of a "Hello, World" module.
+### Below is an example of a "Hello, World" module. (Inspiration taken from AWS's Lambda)
 ```ts
 import { Flare } from "@trail-blaze/flare";
 
@@ -97,3 +99,64 @@ ErrorHandler = (error: Flare) => {
 };
 
 ```
+
+And this is an example of a Flare (Work-In-Progress)
+
+```json
+{
+   "spark_id": "IANCBAA4xnQDOyUEUIQA7gAUiCASny5R+AJ4D2AI0L4", // Error stored in the database
+   "severity": "HIGH",
+   "attention": {
+      "trace": [
+         ["path/path/path/path/file", "23", "51"],
+         ["path/path/path/path/file", "32", "15"],
+         ["path/path/path/path/file", "21", "12"]
+      ]
+   },
+   "did_you_know": "Syntax Error."
+}
+
+```
+
+## We can see how this comes all together. Example of a module that moves all the pawns to somewhere mid-air in the world on-join.
+
+```ts
+import { FWorld } from "@trail-blaze/retroflex";
+import { Flare } from "@trail-blaze/flare";
+
+ThreadStart = (arguments: Array) => {
+// Disable fall damage
+FWorld.setProperty("damage", "false");
+
+// Move all pawns to (x, y, z)
+FWorld.getPawnList().forEach((pawn) => {
+   pawn.move(700, 700, 700); // x, y. z
+});
+   return 0;
+};
+
+ThreadExit = (arguments: Array) => {
+   // Clean-up all the pawns
+   // Move all pawns to (x, y, z)
+   FWorld.getPawnList().forEach((pawn) => {
+      pawn.kill();
+   });
+   // There's nothing really special going on here
+   return 0;
+};
+
+ErrorHandler = (error: Flare) => {
+   try {
+      console.warn("Trying that again.");
+      ThreadStart();
+   } catch (error) {
+      console.error(Flare.parse(Flare).getReason()); // We can do other stuff with Flare as well.
+                                                     // It's a utility of functions for reading Flares
+      console.error("Cleaning up all the pawns IMMEDIATELY!");
+      ThreadExit();
+   }
+   return 1;
+};
+
+```
+
